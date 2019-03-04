@@ -25,17 +25,18 @@ class Car extends Entity{
 class Speedy extends Car {
   constructor(scene, x, y) {
     super(scene, x, y, "sprEnemy1", "Speedy");
+
   }
-}
+}//end of speedy class
 class Tanky extends Car {
   constructor(scene, x, y) {
     super(scene, x, y, "sprEnemy0", "Tanky");
     this.play("sprEnemy0");
   }
-}
+}//end of tanky class
 class Shooty extends Car {
   constructor(scene, x, y) {
     super(scene, x, y, "sprEnemy2", "Shooty");
     this.play("sprEnemy2");
   }
-}
+}//end of shooty class

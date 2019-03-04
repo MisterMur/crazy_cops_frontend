@@ -15,9 +15,9 @@ class SceneMain extends Phaser.Scene {
       frameHeight: 16
     });
     this.load.image("sprEnemy1", "content/sprEnemy1.png");
-    this.load.spritesheet("sprEnemy2", "content/sprEnemy2.png", {
-      frameWidth: 16,
-      frameHeight: 16
+    this.load.spritesheet("cop", "content/cop.png", {
+      frameWidth: 30,
+      frameHeight: 45
     });
     this.load.image("sprLaserEnemy0", "content/sprLaserEnemy0.png");
     this.load.image("sprLaserPlayer", "content/sprLaserPlayer.png");
@@ -40,8 +40,8 @@ class SceneMain extends Phaser.Scene {
       repeat: -1
     });
     this.anims.create({
-      key: "sprEnemy2",
-      frames: this.anims.generateFrameNumbers("sprEnemy2"),
+      key: "cop",
+      frames: this.anims.generateFrameNumbers("cop"),
       frameRate: 20,
       repeat: -1
     });
@@ -72,12 +72,32 @@ class SceneMain extends Phaser.Scene {
       this.game.config.height * 0.5,
       "sprPlayer"
     );
-
+    //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
     this.keyLeft = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
     this.keyRight = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
     this.keySpace = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+    //group enemies and shots
+    this.enemies = this.add.group();
+    this.enemyLasers = this.add.group();
+    this.playerLasers = this.add.group();
+
+    //spawn enemies based on time event
+    this.time.addEvent({
+    delay: 100,
+    callback: function() {
+    var enemy = new Cop(
+      this,
+      Phaser.Math.Between(0, this.game.config.width),
+      0
+    );
+    this.enemies.add(enemy);
+    },
+    callbackScope: this,
+    loop: true
+    });
   }; // end of create
 
   update(){

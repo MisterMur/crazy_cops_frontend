@@ -1,23 +1,13 @@
-class Car extends Entity{
-  constructor(scene,x,y,key){
-    super(scene,x,y,"cop")
-
-    this.setData("speed", 200);
+class Cop extends Entity {
+  constructor(scene,x,y) {
+    super(scene, x, y, "cop", "GunShip");
+    this.play("cop")
+    this.body.velocity.y = Phaser.Math.Between(50, 100);
   }
-  moveUp() {
-    this.body.velocity.y = -this.getData("speed");
+}//end of cop class
+class CopLasers extends Entity {
+  constructor(scene, x, y) {
+    super(scene, x, y, "sprLaserEnemy0");
+    this.body.velocity.y = 200;
   }
-  moveDown() {
-    this.body.velocity.y = this.getData("speed");
-  }
-  moveLeft() {
-    this.body.velocity.x = -this.getData("speed");
-  }
-  moveRight() {
-    this.body.velocity.x = this.getData("speed");
-  }
-  update(){
-    this.body.setVelocity(0, 0);
-    this.x = Phaser.Math.Clamp(this.x, 0, this.scene.game.config.width);
-    this.y = Phaser.Math.Clamp(this.y, 0, this.scene.game.config.height);
-  }
+}
