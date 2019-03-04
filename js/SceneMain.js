@@ -15,7 +15,7 @@ class SceneMain extends Phaser.Scene {
       frameHeight: 16
     });
     this.load.image("sprEnemy1", "content/sprEnemy1.png");
-    this.load.spritesheet("cop", "content/cop.png", {
+    this.load.spritesheet("sprEnemy2", "content/cop.png", {
       frameWidth: 30,
       frameHeight: 45
     });
@@ -41,7 +41,7 @@ class SceneMain extends Phaser.Scene {
     });
     this.anims.create({
       key: "cop",
-      frames: this.anims.generateFrameNumbers("cop"),
+      frames: this.anims.generateFrameNumbers("sprEnemy2"),
       frameRate: 20,
       repeat: -1
     });
@@ -81,12 +81,43 @@ class SceneMain extends Phaser.Scene {
 
     //group enemies and shots
     this.enemies = this.add.group();
-    this.enemyLasers = this.add.group();
-    this.playerLasers = this.add.group();
+    this.copLasers = this.add.group();
+    this.carLasers = this.add.group();
+
+    // recognize collision between game objects
+    this.physics.add.collider(this.carLasers, this.enemies, function(carLaser, enemy) {
+      // destroys cop
+      if (enemy) {
+        if (enemy.onDestroy !== undefined) {
+            enemy.onDestroy();
+        }
+        // enemy.getData('isDead')
+        debugger
+      enemy.explode(true);
+      carLaser.destroy();
+    }
+  });
+  // recognize collison between cop and car
+    this.physics.add.overlap(this.car, this.enemies, function(car, enemy) {
+      if (!car.getData("isDead") &&
+          !enemy.getData("isDead")) {
+            car.explode(false);
+            enemy.explode(true);
+        }
+    });
+
+    // recognize collion between car and laser
+    this.physics.add.overlap(this.car, this.copLasers, function(car, laser) {
+      if (!car.getData("isDead") &&
+        !laser.getData("isDead")) {
+          car.explode(false);
+          laser.destroy();
+        }
+    });
 
     //spawn enemies based on time event
     this.time.addEvent({
-    delay: 100,
+    delay: 1500,
     callback: function() {
     var enemy = new Cop(
       this,
@@ -114,6 +145,63 @@ class SceneMain extends Phaser.Scene {
     else if (this.keyRight.isDown) {
       this.car.moveRight();
     }
-  }; // end of update
+
+    if (this.keySpace.isDown) {
+      this.car.setData("isShooting", true);
+    }
+
+    else {
+      this.car.setData("timerShootTick", this.car.getData("timerShootDelay") - 1);
+      this.car.setData("isShooting", false);
+    }
+
+    // delete cops once they leave the screen
+    for (var i = 0; i < this.enemies.getChildren().length; i++) {
+      var enemy = this.enemies.getChildren()[i];
+      enemy.update();
+
+      if (enemy.x < -enemy.displayWidth ||
+        enemy.x > this.game.config.width + enemy.displayWidth ||
+        enemy.y < -enemy.displayHeight * 4 ||
+        enemy.y > this.game.config.height + enemy.displayHeight) {
+        if (enemy) {
+          if (enemy.onDestroy !== undefined) {
+            enemy.onDestroy();
+          }
+        enemy.destroy();
+      }
+    }
+  }
+
+  // delete copLasers that are no longer on screen
+  for (var i = 0; i < this.copLasers.getChildren().length; i++) {
+    var laser = this.copLasers.getChildren()[i];
+    laser.update();
+
+    if (laser.x < -laser.displayWidth ||
+    laser.x > this.game.config.width + laser.displayWidth ||
+    laser.y < -laser.displayHeight * 4 ||
+    laser.y > this.game.config.height + laser.displayHeight) {
+      if (laser) {
+        laser.destroy();
+      }
+    }
+  }
+
+  //delete carLasers that are no longer on screen
+  for (var i = 0; i < this.carLasers.getChildren().length; i++) {
+    var laser = this.carLasers.getChildren()[i];
+    laser.update();
+
+    if (laser.x < -laser.displayWidth ||
+    laser.x > this.game.config.width + laser.displayWidth ||
+    laser.y < -laser.displayHeight * 4 ||
+    laser.y > this.game.config.height + laser.displayHeight) {
+      if (laser) {
+        laser.destroy();
+      }
+    }
+  }
+}; // end of update
 
 }
