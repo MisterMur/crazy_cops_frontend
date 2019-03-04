@@ -1,6 +1,6 @@
 class Car extends Entity{
   constructor(scene,x,y,key){
-    super(scene,x,y,"sprPlayer")
+    super(scene,x,y,"porsche")
 
     this.setData("speed", 200);
   }
