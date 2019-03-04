@@ -5,6 +5,7 @@ class SceneMainMenu extends Phaser.Scene {
 
   preload() {
     this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
+    this.load.image("cop", "content/cop.png");
     this.load.image("sprBtnPlayHover", "content/sprBtnPlayHover.png");
     this.load.image("sprBtnPlayDown", "content/sprBtnPlayDown.png");
     this.load.image("sprBtnRestart", "content/sprBtnRestart.png");
