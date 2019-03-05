@@ -1,7 +1,9 @@
+const url = 'http://localhost:3000/api/v1/'
 class SceneMainMenu extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMainMenu" });
-  }
+    // this.loadSceneMain=this.loadSceneMain().bind(this)
+  };
 
   preload() {
     this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
@@ -14,9 +16,74 @@ class SceneMainMenu extends Phaser.Scene {
     this.load.image("sprBtnRestartDown", "content/sprBtnRestartDown.png");
     this.load.audio("sndBtnOver", "content/sndBtnOver.wav");
     this.load.audio("sndBtnDown", "content/sndBtnDown.wav");
-  }
+  };
 
   create() {
-    this.scene.start("SceneMain");
+    this.sfx = {
+      btnOver: this.sound.add("sndBtnOver"),
+      btnDown: this.sound.add("sndBtnDown")
+    };
+    this.btnPlay = this.add.sprite(
+      this.game.config.width * 0.5,
+      this.game.config.height * 0.5,
+      "sprBtnPlay"
+    );
+    this.btnPlay.setInteractive();
+    this.btnPlay.on("pointerover", function() {
+      this.btnPlay.setTexture("sprBtnPlayHover"); // set the button texture to sprBtnPlayHover
+
+      this.sfx.btnOver.play(); // play the button over sound
+    }, this);
+    this.btnPlay.on("pointerout", function() {
+      this.setTexture("sprBtnPlay");
+      });
+    this.btnPlay.on("pointerdown", function() {
+      this.btnPlay.setTexture("sprBtnPlayDown");
+      this.sfx.btnDown.play();
+    }, this);
+    this.btnPlay.on("pointerup", function() {
+      this.btnPlay.setTexture("sprBtnPlay");
+      this.scene.start("SceneMain");
+    }, this);
+  };//end of create
+  loadSceneMain(){
+    // debugger
+    this.scene.start("SceneMain")
   }
+};// end of SceneMainMenu class
+function addMainMenuElements(){
+  const userContainer=document.querySelector('#user-container')
+  userContainer.innerHTML +=`
+  <form id="user-form" action="index.html" method="post">
+    <input type="text" label="Username" name="username" value="">
+    <input type="submit" value="Create User">
+  </form>
+  `
+};//end of addMainMenuElements
+
+document.addEventListener('submit',function(e){
+  const userForm = document.querySelector('#user-form')
+  if (e.target === userForm){
+    e.preventDefault()
+    addNewUser({username:userForm.username.value})
+  }
+})
+
+document.addEventListener('DOMContentLoaded',function(){
+  addMainMenuElements()
+})
+function addNewUser(user){
+  fetch(url+'users',{
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+      "Content-Type":'application/json',
+      "Accepts":'application/json'
+    },
+    body: JSON.stringify({
+      username: user.username
+    })
+  }).then(myJson =>
+    myJson.json())
+  .then(res=>console.log(res))
 }
