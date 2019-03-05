@@ -66,7 +66,8 @@ class SceneMain extends Phaser.Scene {
         laser: this.sound.add("sndLaser")
     };
 
-    this.car = new Car(
+
+    this.car = new Speedy(
       this,
       this.game.config.width * 0.5,
       this.game.config.height * 0.5,
