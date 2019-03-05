@@ -131,73 +131,75 @@ class SceneMain extends Phaser.Scene {
   }; // end of create
 
   update(){
-    this.car.update();
-    if (this.keyUp.isDown) {
-      this.car.moveUp();
-    }
-    else if (this.keyDown.isDown) {
-      this.car.moveDown();
-    }
-    if (this.keyLeft.isDown) {
-      this.car.moveLeft();
-    }
-    else if (this.keyRight.isDown) {
-      this.car.moveRight();
-    }
+    if (!this.car.getData("isDead")) {
+      this.car.update();
+      if (this.keyUp.isDown) {
+        this.car.moveUp();
+      }
+      else if (this.keyDown.isDown) {
+        this.car.moveDown();
+      }
+      if (this.keyLeft.isDown) {
+        this.car.moveLeft();
+      }
+      else if (this.keyRight.isDown) {
+        this.car.moveRight();
+      }
 
-    if (this.keySpace.isDown) {
-      this.car.setData("isShooting", true);
-    }
+      if (this.keySpace.isDown) {
+        this.car.setData("isShooting", true);
+      }
 
-    else {
-      this.car.setData("timerShootTick", this.car.getData("timerShootDelay") - 1);
-      this.car.setData("isShooting", false);
-    }
+      else {
+        this.car.setData("timerShootTick", this.car.getData("timerShootDelay") - 1);
+        this.car.setData("isShooting", false);
+      }
 
-    // delete cops once they leave the screen
-    for (var i = 0; i < this.enemies.getChildren().length; i++) {
-      var enemy = this.enemies.getChildren()[i];
-      enemy.update();
+      // delete cops once they leave the screen
+      for (var i = 0; i < this.enemies.getChildren().length; i++) {
+        var enemy = this.enemies.getChildren()[i];
+        enemy.update();
 
-      if (enemy.x < -enemy.displayWidth ||
-        enemy.x > this.game.config.width + enemy.displayWidth ||
-        enemy.y < -enemy.displayHeight * 4 ||
-        enemy.y > this.game.config.height + enemy.displayHeight) {
-        if (enemy) {
-          if (enemy.onDestroy !== undefined) {
-            enemy.onDestroy();
-          }
-        enemy.destroy();
+        if (enemy.x < -enemy.displayWidth ||
+          enemy.x > this.game.config.width + enemy.displayWidth ||
+          enemy.y < -enemy.displayHeight * 4 ||
+          enemy.y > this.game.config.height + enemy.displayHeight) {
+          if (enemy) {
+            if (enemy.onDestroy !== undefined) {
+              enemy.onDestroy();
+            }
+          enemy.destroy();
+        }
       }
     }
-  }
 
-  // delete copLasers that are no longer on screen
-  for (var i = 0; i < this.copLasers.getChildren().length; i++) {
-    var laser = this.copLasers.getChildren()[i];
-    laser.update();
+    // delete copLasers that are no longer on screen
+    for (var i = 0; i < this.copLasers.getChildren().length; i++) {
+      var laser = this.copLasers.getChildren()[i];
+      laser.update();
 
-    if (laser.x < -laser.displayWidth ||
-    laser.x > this.game.config.width + laser.displayWidth ||
-    laser.y < -laser.displayHeight * 4 ||
-    laser.y > this.game.config.height + laser.displayHeight) {
-      if (laser) {
-        laser.destroy();
+      if (laser.x < -laser.displayWidth ||
+      laser.x > this.game.config.width + laser.displayWidth ||
+      laser.y < -laser.displayHeight * 4 ||
+      laser.y > this.game.config.height + laser.displayHeight) {
+        if (laser) {
+          laser.destroy();
+        }
       }
     }
-  }
 
-  //delete carLasers that are no longer on screen
-  for (var i = 0; i < this.carLasers.getChildren().length; i++) {
-    var laser = this.carLasers.getChildren()[i];
-    laser.update();
+    //delete carLasers that are no longer on screen
+    for (var i = 0; i < this.carLasers.getChildren().length; i++) {
+      var laser = this.carLasers.getChildren()[i];
+      laser.update();
 
-    if (laser.x < -laser.displayWidth ||
-    laser.x > this.game.config.width + laser.displayWidth ||
-    laser.y < -laser.displayHeight * 4 ||
-    laser.y > this.game.config.height + laser.displayHeight) {
-      if (laser) {
-        laser.destroy();
+      if (laser.x < -laser.displayWidth ||
+      laser.x > this.game.config.width + laser.displayWidth ||
+      laser.y < -laser.displayHeight * 4 ||
+      laser.y > this.game.config.height + laser.displayHeight) {
+        if (laser) {
+          laser.destroy();
+        }
       }
     }
   }
