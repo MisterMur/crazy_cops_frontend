@@ -3,25 +3,33 @@ class Cop extends Entity {
     super(scene, x, y, "cop", "Coppy");
     this.play("cop")
     this.body.velocity.y = Phaser.Math.Between(50, 100);
-    //shoot on timer
-    this.shootTimer = this.scene.time.addEvent({
-      delay: 1000,
-      callback: function() {
-        var laser = new CopLaser(
-        this.scene,
-        this.x,
-        this.y
-        );
-        laser.setScale(this.scaleX);
-        this.scene.copLasers.add(laser);
+    // debugger
+    // if(this.active===true){
+
+      //shoot on timer
+      this.shootTimer = this.scene.time.addEvent({
+        delay: 1000,
+        callback: function() {
+          var laser = new CopLaser(
+            this.scene,
+            this.x,
+            this.y
+          );
+          laser.setScale(this.scaleX);
+          this.scene.copLasers.add(laser);
         },
-      callbackScope: this,
-      loop: true
-    });
-  }
+        callbackScope: this,
+        loop: true
+      });
+      // debugger
+
+  };
+
+
+
 
   stopShooting() {
-    this.shootTimer.loop = false;
+    this.shootTimer.paused = false;
   };
   explode(canDestroy)
   {
@@ -49,6 +57,13 @@ class Cop extends Entity {
     this.setData("isDead", true);
     }
   }
+  onDestroy() {
+    if (this.shootTimer !== undefined) {
+      if (this.shootTimer) {
+        this.shootTimer.remove(false);
+      }
+    }
+  }
 }//end of cop class
 
 class CopLaser extends Entity {
@@ -57,11 +72,5 @@ class CopLaser extends Entity {
     this.body.velocity.y = 200;
   }
 
-  onDestroy() {
-    if (this.shootTimer !== undefined) {
-      if (this.shootTimer) {
-        this.shootTimer.remove(false);
-      }
-    }
-  }
+
 }
