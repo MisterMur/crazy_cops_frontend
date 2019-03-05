@@ -102,6 +102,7 @@ class SceneMain extends Phaser.Scene {
           !enemy.getData("isDead")) {
             car.explode(false);
             enemy.explode(true);
+            car.onDestroy()
         }
     });
 
@@ -111,6 +112,7 @@ class SceneMain extends Phaser.Scene {
         !laser.getData("isDead")) {
           car.explode(false);
           laser.destroy();
+          car.onDestroy()
         }
     });
 
