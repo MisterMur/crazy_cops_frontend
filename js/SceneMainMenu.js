@@ -1,4 +1,7 @@
 const url = 'http://localhost:3000/api/v1/'
+var allUsers = [];
+var currentUser;
+
 class SceneMainMenu extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMainMenu" });
@@ -46,11 +49,12 @@ class SceneMainMenu extends Phaser.Scene {
       this.scene.start("SceneMain");
     }, this);
   };//end of create
+
   loadSceneMain(){
-    // debugger
     this.scene.start("SceneMain")
   }
 };// end of SceneMainMenu class
+
 function addMainMenuElements(){
   const userContainer=document.querySelector('#user-container')
   userContainer.innerHTML +=`
@@ -61,17 +65,50 @@ function addMainMenuElements(){
   `
 };//end of addMainMenuElements
 
-document.addEventListener('submit',function(e){
+document.addEventListener('submit', function(e){
   const userForm = document.querySelector('#user-form')
   if (e.target === userForm){
-    e.preventDefault()
-    addNewUser({username:userForm.username.value})
+    e.preventDefault();
+    getAllusers();
+    // users
+    if(searchExistingUser(userForm.username.value) == undefined) {
+      addNewUser({username: userForm.username.value});
+      console.log(searchExistingUser(userForm.username.value))
+    } else {
+      console.log(searchExistingUser(userForm.username.value))
+
+      searchExistingUser(userForm.username.value);
+    }
   }
 })
 
 document.addEventListener('DOMContentLoaded',function(){
   addMainMenuElements()
+  getAllusers()
 })
+
+function searchExistingUser(name){
+  getAllusers();
+
+  return allUsers.find(u => {
+    // debugger
+    return u.username == name;
+  });
+  debugger
+  console.log(foundUser)
+}
+
+function getAllusers(){
+  fetch(url+'users')
+  .then(res=>res.json())
+  .then(users => {
+    allUsers = [];
+    users.forEach(user => {
+      allUsers.push(user);
+    })
+  })
+}
+
 function addNewUser(user){
   fetch(url+'users',{
     method: 'POST',
@@ -85,5 +122,9 @@ function addNewUser(user){
     })
   }).then(myJson =>
     myJson.json())
-  .then(res=>console.log(res))
+  .then(
+    res=>{allUsers.push(res)
+
+    return res
+  })
 }
