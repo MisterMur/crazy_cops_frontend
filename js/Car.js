@@ -6,7 +6,15 @@ class Car extends Entity{
     this.setData("timerShootDelay", 10);
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
     this.setData("speed", 200);
+    this.setData("points", 0);
   }
+
+  addPoints(num) {
+    let carPoints = this.getData("points");
+    carPoints += num;
+    this.setData("points", carPoints);
+  }
+
   moveUp() {
     this.body.velocity.y = -this.getData("speed");
   }
@@ -65,6 +73,24 @@ class Car extends Entity{
     }
   }
 
+  postGame() {
+    fetch('http://localhost:3000/api/v1/games', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        "Content-Type": "application/json",
+        "Accepts": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: 1,
+        car_id: 1,
+        score: 100
+      })
+    })
+    .then(response => response.json())
+    .then(console.log)
+  };
+
   onDestroy() {
   this.scene.time.addEvent({ // go to game over scene
     delay: 1000,
@@ -74,6 +100,7 @@ class Car extends Entity{
     callbackScope: this,
     loop: false
     });
+  this.postGame();
   }
 } // end of car class
 
