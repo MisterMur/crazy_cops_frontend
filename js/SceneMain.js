@@ -92,7 +92,6 @@ class SceneMain extends Phaser.Scene {
             enemy.onDestroy();
         }
         // enemy.getData('isDead')
-        debugger
       enemy.explode(true);
       carLaser.destroy();
     }
