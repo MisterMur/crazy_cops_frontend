@@ -73,7 +73,8 @@ class Car extends Entity{
     }
   }
 
-  postGame(game) {
+  postGame() {
+    // debugger;
     fetch('http://localhost:3000/api/v1/games', {
       method: 'POST',
       mode: 'cors',
@@ -82,13 +83,13 @@ class Car extends Entity{
         "Accepts": "application/json"
       },
       body: JSON.stringify({
-        user_id: game.user_id,
-        car_id: game.car_id,
-        score: game.score
+        user_id: game.user.id,
+        car_id: 1,
+        score: this.getData("points")
       })
     })
     .then(response => response.json())
-    .then(console.log)
+    .then(a=>console.log('postGame',a))
   };
 
   onDestroy() {
@@ -100,7 +101,7 @@ class Car extends Entity{
     callbackScope: this,
     loop: false
   });
-  
+
   this.postGame();
   }
 } // end of car class

@@ -72,13 +72,14 @@ document.addEventListener('submit', function(e){
     getAllusers();
     // users
     if(searchExistingUser(userForm.username.value) == undefined) {
-      addNewUser({username: userForm.username.value});
-      console.log(searchExistingUser(userForm.username.value))
+      currentUser = addNewUser({username: userForm.username.value});
+      // console.log(searchExistingUser(userForm.username.value))
     } else {
-      console.log(searchExistingUser(userForm.username.value))
-
-      searchExistingUser(userForm.username.value);
+      // console.log(searchExistingUser(userForm.username.value))
+      currentUser = searchExistingUser(userForm.username.value);
     }
+    //current user may not be defined if they already exist here
+    game.user = currentUser;
   }
 })
 
@@ -95,7 +96,7 @@ function searchExistingUser(name){
     return u.username == name;
   });
   debugger
-  console.log(foundUser)
+  // console.log(foundUser)
 }
 
 function getAllusers(){
@@ -124,7 +125,6 @@ function addNewUser(user){
     myJson.json())
   .then(
     res=>{allUsers.push(res)
-
     return res
   })
 }
