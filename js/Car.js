@@ -86,7 +86,7 @@ class Car extends Entity{
       })
     })
     .then(response => response.json())
-    
+
   };
 
   onDestroy() {
