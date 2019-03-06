@@ -120,23 +120,39 @@ class Speedy extends Car {
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 10);//firerate
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
-    this.setData("speed", 1000);
+    this.setData("speed", 600);
     this.setData("points", 0);
     this.setData('category','Speedy')
     this.setData('health',100) //chagnge based on collison
-
-
   }
 }//end of speedy class
+
 class Tanky extends Car {
   constructor(scene, x, y) {
     super(scene, x, y, "sprEnemy0", "Tanky");
-    this.play("sprEnemy0");
+    // this.play("sprEnemy0");
+
+    this.setData("isShooting", false);
+    this.setData("timerShootDelay", 10);//firerate
+    this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
+    this.setData("speed", 200);
+    this.setData("points", 0);
+    this.setData('category','Speedy')
+    this.setData('health',100) //chagnge based on collison *******
   }
 }//end of tanky class
+
 class Shooty extends Car {
   constructor(scene, x, y) {
     super(scene, x, y, "sprEnemy2", "Shooty");
-    this.play("sprEnemy2");
+    // this.play("sprEnemy2");
+
+    this.setData("isShooting", false);
+    this.setData("timerShootDelay", 5);//firerate
+    this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
+    this.setData("speed", 200);
+    this.setData("points", 0);
+    this.setData('category','Speedy')
+    this.setData('health',100) //chagnge based on collison
   }
 }//end of shooty class

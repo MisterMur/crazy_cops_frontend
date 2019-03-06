@@ -66,13 +66,29 @@ class SceneMain extends Phaser.Scene {
         laser: this.sound.add("sndLaser")
     };
 
+    // write if/else statements to assign this.car based on user input
+    if (game.car.category == "Speedy") {
+      this.car = new Speedy(
+        this,
+        this.game.config.width * 0.5,
+        this.game.config.height * 0.5,
+        "sprPlayer"
+      )} else if (game.car.category == "Shooty") {
+        this.car = new Shooty(
+          this,
+          this.game.config.width * 0.5,
+          this.game.config.height * 0.5,
+          "sprPlayer"
+        )
+      } else if (game.car.category == "Tanky") {
+        this.car = new Tanky(
+          this,
+          this.game.config.width * 0.5,
+          this.game.config.height * 0.5,
+          "sprPlayer"
+        )
+      }    
 
-    this.car = new Speedy(
-      this,
-      this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
-      "sprPlayer"
-    );
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);

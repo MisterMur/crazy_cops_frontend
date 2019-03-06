@@ -1,4 +1,5 @@
 const url = 'http://localhost:3000/api/v1/'
+var allCars = [];
 var allUsers = [];
 var currentUser;
 
@@ -65,28 +66,63 @@ function addMainMenuElements(){
   `
 };//end of addMainMenuElements
 
+function addCarMenuElements(){
+  const userContainer=document.querySelector('#user-container')
+  userContainer.innerHTML +=`
+  <form id="car-form" action="index.html" method="post">
+    <select label="Choose a car" name="car">
+      <option value="speedy">Speedy</option>
+      <option value="shooty">Shooty</option>
+      <option value="tanky">Tanky</option>
+    <input type="submit" value="Select Car">
+  </form>
+  `
+};
+
 document.addEventListener('submit', function(e){
   const userForm = document.querySelector('#user-form')
+  const carForm = document.querySelector('#car-form')
   if (e.target === userForm){
     e.preventDefault();
-    getAllusers();
-    // users
+    // getAllusers();
     if(searchExistingUser(userForm.username.value) == undefined) {
-      currentUser = addNewUser({username: userForm.username.value});
-      // console.log(searchExistingUser(userForm.username.value))
+      addNewUser({username: userForm.username.value});
+      currentUser = searchExistingUser(userForm.username.value);
+      console.log(currentUser)
     } else {
-      // console.log(searchExistingUser(userForm.username.value))
       currentUser = searchExistingUser(userForm.username.value);
     }
-    //current user may not be defined if they already exist here
+    //current user is undefined here if they're a new user, unless you click the submit button (twice?)
     game.user = currentUser;
+  } else if (e.target === carForm) {
+    e.preventDefault();
+    if (e.target.car.value == "speedy") {
+      game.car = allCars[0];
+    } else if (e.target.car.value == "shooty") {
+      game.car = allCars[1];
+    } else if (e.target.car.value == "tanky") {
+      game.car = allCars[2];
+    }
   }
 })
 
 document.addEventListener('DOMContentLoaded',function(){
   addMainMenuElements()
+  addCarMenuElements()
   getAllusers()
+  getCars()
 })
+
+function getCars() {
+  fetch(url+'cars')
+  .then(res=>res.json())
+  .then(cars=>{
+    allCars = [];
+    cars.forEach(car=>{
+      allCars.push(car);
+    })
+  })
+};
 
 function searchExistingUser(name){
   getAllusers();
