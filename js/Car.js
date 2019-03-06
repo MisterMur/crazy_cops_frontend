@@ -74,7 +74,6 @@ class Car extends Entity{
   }
 
   postGame() {
-    // debugger;
     fetch('http://localhost:3000/api/v1/games', {
       method: 'POST',
       mode: 'cors',
@@ -84,7 +83,7 @@ class Car extends Entity{
       },
       body: JSON.stringify({
         user_id: game.user.id,
-        car_id: 1,
+        car_id: game.car.id,
         score: this.getData("points")
       })
     })
