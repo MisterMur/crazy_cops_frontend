@@ -90,7 +90,7 @@ class SceneMain extends Phaser.Scene {
       }
 
     game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
-    debugger
+    // debugger
     game.currentHealth = this.add.text(400, 5, this.car.getData('health')+' Health', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);

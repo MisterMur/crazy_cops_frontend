@@ -8,7 +8,7 @@ class Car extends Entity{
     let carPoints = this.getData("points");
     carPoints += num;
     this.setData("points", carPoints);
-    game.currentPoints.setText( carPoints+' Points'); 
+    game.currentPoints.setText( carPoints+' Points');
   }
 
 
@@ -86,7 +86,7 @@ class Car extends Entity{
       })
     })
     .then(response => response.json())
-    .then(a=>console.log('postGame',a))
+    
   };
 
   onDestroy() {
