@@ -8,7 +8,9 @@
     "node-static": "^0.7.11",
     "phaser": "^3.16.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@orange-games/phaser-input": "^2.0.5"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
