@@ -87,7 +87,7 @@ class SceneMain extends Phaser.Scene {
           this.game.config.height * 0.5,
           "sprPlayer"
         )
-      }    
+      }
 
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
@@ -125,11 +125,18 @@ class SceneMain extends Phaser.Scene {
 
     // recognize collion between car and laser
     this.physics.add.overlap(this.car, this.copLasers, function(car, laser) {
-      if (!car.getData("isDead") &&
-        !laser.getData("isDead")) {
-          car.explode(false);
-          laser.destroy();
-          car.onDestroy()
+      let carHealth = car.getData("health");
+      if (!laser.getData("isDead")) {
+        laser.destroy();
+      }
+      carHealth -= 50;
+      car.setData("health", carHealth);
+      if (carHealth == 0) {
+        if (!car.getData("isDead")) {
+            car.explode(false);
+            laser.destroy();
+            car.onDestroy()
+          }
         }
     });
 

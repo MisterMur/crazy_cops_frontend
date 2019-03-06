@@ -1,12 +1,6 @@
 class Car extends Entity{
   constructor(scene,x,y,key){
     super(scene,x,y,"porsche")
-    //car speed health .. attributes
-    // this.setData("isShooting", false);
-    // this.setData("timerShootDelay", 10);
-    // this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
-    // this.setData("speed", 200);
-    // this.setData("points", 0);
   }
 
   addPoints(num) {
@@ -122,7 +116,7 @@ class Speedy extends Car {
     this.setData("speed", 600);
     this.setData("points", 0);
     this.setData('category','Speedy')
-    this.setData('health',100) //chagnge based on collison
+    this.setData('health', 100) //chagnge based on collison
   }
 }//end of speedy class
 
@@ -137,7 +131,7 @@ class Tanky extends Car {
     this.setData("speed", 200);
     this.setData("points", 0);
     this.setData('category','Speedy')
-    this.setData('health',100) //chagnge based on collison *******
+    this.setData('health', 300) //chagnge based on collison *******
   }
 }//end of tanky class
 
@@ -152,6 +146,6 @@ class Shooty extends Car {
     this.setData("speed", 200);
     this.setData("points", 0);
     this.setData('category','Speedy')
-    this.setData('health',100) //chagnge based on collison
+    this.setData('health', 100) //chagnge based on collison
   }
 }//end of shooty class
