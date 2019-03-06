@@ -89,6 +89,7 @@ class SceneMain extends Phaser.Scene {
         )
       }
 
+    game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', font: '14pt Arial' });  
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);

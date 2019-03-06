@@ -1,3 +1,4 @@
+// var currentPoints
 class Car extends Entity{
   constructor(scene,x,y,key){
     super(scene,x,y,"porsche")
@@ -7,6 +8,9 @@ class Car extends Entity{
     let carPoints = this.getData("points");
     carPoints += num;
     this.setData("points", carPoints);
+
+
+    game.currentPoints.setText( carPoints+' Points');
   }
 
   moveUp() {
