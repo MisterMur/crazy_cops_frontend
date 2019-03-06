@@ -21,8 +21,9 @@ class SceneGameOver extends Phaser.Scene {
     var topScores = games.slice(0,10)
 
     for(let i =0;i<topScores.length;i++){
-      console.log(allGames[i])
-      this.add.text(this.game.config.width * 0.5, (80+15*i), `${allGames[i].user}: ${allGames[i].score}`, { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
+      // console.log(allGames[i])
+      // debugger
+      this.add.text(this.game.config.width * 0.35, (160+15*i), `${allGames[i].user.username}: ${allGames[i].score}`, { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'center'});
     }
   }
 
