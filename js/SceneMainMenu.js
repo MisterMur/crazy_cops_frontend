@@ -98,9 +98,9 @@ document.addEventListener('submit', function(e){
     e.preventDefault();
     if (e.target.car.value == "speedy") {
       game.car = allCars[0];
-    } else if (e.target.car.value == "shooty") {
-      game.car = allCars[1];
     } else if (e.target.car.value == "tanky") {
+      game.car = allCars[1];
+    } else if (e.target.car.value == "shooty") {
       game.car = allCars[2];
     }
   }

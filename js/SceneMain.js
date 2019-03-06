@@ -89,7 +89,9 @@ class SceneMain extends Phaser.Scene {
         )
       }
 
-    game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', font: '14pt Arial' });  
+    game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
+    // debugger
+    game.currentHealth = this.add.text(400, 5, this.car.health+' Health', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -131,7 +133,9 @@ class SceneMain extends Phaser.Scene {
         laser.destroy();
       }
       carHealth -= 50;
+
       car.setData("health", carHealth);
+      game.currentHealth.setText( carHealth+' Points');
       if (carHealth == 0) {
         if (!car.getData("isDead")) {
             car.explode(false);

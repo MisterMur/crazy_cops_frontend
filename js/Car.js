@@ -8,10 +8,10 @@ class Car extends Entity{
     let carPoints = this.getData("points");
     carPoints += num;
     this.setData("points", carPoints);
-
-
-    game.currentPoints.setText( carPoints+' Points');
+    game.currentPoints.setText( carPoints+' Points'); 
   }
+
+
 
   moveUp() {
     this.body.velocity.y = -this.getData("speed");
