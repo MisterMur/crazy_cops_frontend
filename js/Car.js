@@ -1,7 +1,6 @@
-// var currentPoints
 class Car extends Entity{
-  constructor(scene,x,y,key){
-    super(scene,x,y,"porsche")
+  constructor(scene,x,y, key){
+    super(scene, x, y, key)
   }
 
   addPoints(num) {
@@ -10,8 +9,6 @@ class Car extends Entity{
     this.setData("points", carPoints);
     game.currentPoints.setText( carPoints+' Points');
   }
-
-
 
   moveUp() {
     this.body.velocity.y = -this.getData("speed");
@@ -104,14 +101,14 @@ class Car extends Entity{
 
 class CarLaser extends Entity {
   constructor(scene, x, y) {
-    super(scene, x, y, "sprLaserPlayer");
+    super(scene, x, y, "donut");
     this.body.velocity.y = -200;
   }
 }
 
 class Speedy extends Car {
   constructor(scene, x, y) {
-    super(scene, x, y, "sprEnemy1", "Speedy");
+    super(scene, x, y, "porsche");
 
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 10);//firerate
@@ -119,14 +116,13 @@ class Speedy extends Car {
     this.setData("speed", 600);
     this.setData("points", 0);
     this.setData('category','Speedy')
-    this.setData('health', 100) //chagnge based on collison
+    this.setData('health', 100)
   }
 }//end of speedy class
 
 class Tanky extends Car {
   constructor(scene, x, y) {
-    super(scene, x, y, "sprEnemy0", "Tanky");
-    // this.play("sprEnemy0");
+    super(scene, x, y, "tank");
 
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 10);//firerate
@@ -134,14 +130,13 @@ class Tanky extends Car {
     this.setData("speed", 200);
     this.setData("points", 0);
     this.setData('category','Speedy')
-    this.setData('health', 300) //chagnge based on collison *******
+    this.setData('health', 300) // *******
   }
 }//end of tanky class
 
 class Shooty extends Car {
   constructor(scene, x, y) {
-    super(scene, x, y, "sprEnemy2", "Shooty");
-    // this.play("sprEnemy2");
+    super(scene, x, y, "shooty");
 
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 5);//firerate
@@ -149,6 +144,6 @@ class Shooty extends Car {
     this.setData("speed", 200);
     this.setData("points", 0);
     this.setData('category','Speedy')
-    this.setData('health', 100) //chagnge based on collison
+    this.setData('health', 100)
   }
 }//end of shooty class

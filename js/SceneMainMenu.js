@@ -11,8 +11,10 @@ class SceneMainMenu extends Phaser.Scene {
 
   preload() {
     this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
+    this.load.image("donut", "content/donut.png");
     this.load.image("cop", "content/cop.png");
     this.load.image("porsche", "content/porsche.png");
+    this.load.image("shooty", "content/shooty.png");
     this.load.image("tank", "content/tank.png");
     this.load.image("sprBtnPlayHover", "content/sprBtnPlayHover.png");
     this.load.image("sprBtnPlayDown", "content/sprBtnPlayDown.png");

@@ -7,7 +7,9 @@ class SceneGameOver extends Phaser.Scene {
   preload() {
     this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
     this.load.image("cop", "content/cop.png");
+    this.load.image("shooty", "content/shooty.png");
     this.load.image("porsche", "content/porsche.png");
+    this.load.image("donut", "content/donut.png");
     this.load.image("sprBtnPlayHover", "content/sprBtnPlayHover.png");
     this.load.image("sprBtnPlayDown", "content/sprBtnPlayDown.png");
     this.load.image("sprBtnRestart", "content/sprBtnRestart.png");
@@ -29,7 +31,7 @@ class SceneGameOver extends Phaser.Scene {
     // this.displayHighScores()
     this.btnPlay = this.add.sprite(
       this.game.config.width * 0.5,
-      this.game.config.height * 0.5,
+      this.game.config.height * 0.6,
       "sprBtnPlay"
     );
     this.btnPlay.setInteractive();
@@ -53,9 +55,7 @@ class SceneGameOver extends Phaser.Scene {
     var topScores = games.slice(0,10)
 
     for(let i =0;i<topScores.length;i++){
-      // console.log(allGames[i])
-      // debugger
-      this.add.text(this.game.config.width * 0.35, (160+15*i), `${allGames[i].user.username}: ${allGames[i].score}`, { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'center'});
+      this.add.text(this.game.config.width * 0.4, (160+15*i), `${allGames[i].user.username}: ${allGames[i].score}`, { fill: '#ffffff', fontFamily: 'monospace',fontSize: 14, align:'left'});
     }
   }
 
