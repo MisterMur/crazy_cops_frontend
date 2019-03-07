@@ -66,7 +66,7 @@ class SceneMain extends Phaser.Scene {
         laser: this.sound.add("sndLaser")
     };
 
-    // write if/else statements to assign this.car based on user input
+    // assign this.car based on user input
     if (game.car.category == "Speedy") {
       this.car = new Speedy(
         this,
@@ -91,7 +91,7 @@ class SceneMain extends Phaser.Scene {
 
     game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
     // debugger
-    game.currentHealth = this.add.text(400, 5, this.car.getData('health')+' Health', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
+    game.currentHealth = this.add.text(400, 5, this.car.getData('health') + ' HP', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -135,7 +135,7 @@ class SceneMain extends Phaser.Scene {
       carHealth -= 50;
 
       car.setData("health", carHealth);
-      game.currentHealth.setText( carHealth+' Points');
+      game.currentHealth.setText(carHealth + ' HP');
       if (carHealth == 0) {
         if (!car.getData("isDead")) {
             car.explode(false);
