@@ -47,7 +47,16 @@ class SceneGameOver extends Phaser.Scene {
     }, this);
     this.btnPlay.on("pointerup", function() {
       this.btnPlay.setTexture("sprBtnPlay");
+      if(game.user && game.car){
+        if(game.error){
+
+          game.error.destroy()
+        }
       this.scene.start("SceneMain");
+    }else{
+      game.error = this.add.text(115, this.game.config.height * 0.6 + 25,'Please Select Car and User', { fill: '#ffffff', fontFamily: 'monospace',fontSize:16, align:'center' })
+
+    }
     }, this);
 
   }

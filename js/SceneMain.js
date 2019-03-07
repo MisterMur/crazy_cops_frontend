@@ -178,7 +178,7 @@ class SceneMain extends Phaser.Scene {
         game.level.setText('Level ' + this.level)
        let numCops = 0
          this.time.addEvent({
-         delay: 5000,
+         delay: 2000,
          callback: function() {
          var enemy = new Cop(
            this,

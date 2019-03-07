@@ -71,9 +71,6 @@ class SceneMainMenu extends Phaser.Scene {
   }
 };// end of SceneMainMenu class
 
-// add orange-games plugin to allow text input
-
-
 function addMainMenuElements(){
   const userContainer=document.querySelector('#user-container')
   userContainer.innerHTML +=`
@@ -185,4 +182,5 @@ function addNewUser(user){
     res=>{allUsers.push(res)
     return res
   })
+  .then(user => searchExistingUser(user))
 }
