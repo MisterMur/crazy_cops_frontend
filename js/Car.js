@@ -106,7 +106,7 @@ class Speedy extends Car {
     this.setData("isShooting", false);
     this.setData("timerShootDelay", 10);//firerate
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
-    this.setData("speed", 600);
+    this.setData("speed", 500);
     this.setData("points", 0);
     this.setData('category','Speedy')
     this.setData('health', 100)
