@@ -144,29 +144,28 @@ class SceneMain extends Phaser.Scene {
           }
         }
     });
-    console.log(this.time)
-    setInterval(()=>{
-      this.time.addEvent({
-      delay:this.time.now ,
-      callback: function() {
-      var enemy = new Cop(
-        this,
-        Phaser.Math.Between(0, this.game.config.width),
-        0
-      );
-      this.enemies.add(enemy);
-      },
-      callbackScope: this,
-      loop: true
-      });
-      console.log(this.time.now)
-      this.time.removeAllEvents()
 
-      // this.time.events.remove(timerEvents[0]);
-    },1000)
-
-
-
+    if (!this.car.getData("isDead")) {
+      for (let i = 10000; i > 250; i -= 1000) {
+        setInterval(()=>{
+          this.time.removeAllEvents()
+          this.time.addEvent({
+          delay: i,
+          callback: function() {
+          var enemy = new Cop(
+            this,
+            Phaser.Math.Between(0, this.game.config.width),
+            0
+          );
+          this.enemies.add(enemy);
+          },
+          callbackScope: this,
+          loop: true
+          });
+          console.log(this.time.now)
+        }, 2000)
+      }
+    }
 
   }; // end of create
   //  updateCounter() {
