@@ -27,8 +27,15 @@ class SceneGameOver extends Phaser.Scene {
       align: 'center'
     });
     this.title.setOrigin(0.5);
+    this.lastScore = this.add.text(this.game.config.width * 0.5, 65, game.carPoints, {
+      fontFamily: 'monospace',
+      fontSize: 30,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'});
+    this.lastScore.setOrigin(0.5);
     this.getHighScores()
-    // this.displayHighScores()
+
     this.btnPlay = this.add.sprite(
       this.game.config.width * 0.5,
       this.game.config.height * 0.6,
@@ -54,8 +61,8 @@ class SceneGameOver extends Phaser.Scene {
         }
       this.scene.start("SceneMain");
     }else{
-      game.error = this.add.text(115, this.game.config.height * 0.6 + 25,'Please Select Car and User', { fill: '#ffffff', fontFamily: 'monospace',fontSize:16, align:'center' })
-
+      game.error = this.add.text(this.game.config.width * 0.5, this.game.config.height * 0.6 + 25,'Please Select Car and User', { fill: '#ffffff', fontFamily: 'monospace',fontSize:16, align:'center' })
+      game.error.setOrigin(0.5);
     }
     }, this);
 
@@ -64,7 +71,8 @@ class SceneGameOver extends Phaser.Scene {
     var topScores = games.slice(0,10)
 
     for(let i =0;i<topScores.length;i++){
-      this.add.text(this.game.config.width * 0.4, (160+15*i), `${allGames[i].user.username}: ${allGames[i].score}`, { fill: '#ffffff', fontFamily: 'monospace',fontSize: 14, align:'left'});
+      let a = this.add.text(this.game.config.width * 0.5, (160+15*i), `${allGames[i].user.username}: ${allGames[i].score}`, { fill: '#ffffff', fontFamily: 'monospace',fontSize: 14, align:'center'});
+      a.setOrigin(0.5);
     }
   }
 

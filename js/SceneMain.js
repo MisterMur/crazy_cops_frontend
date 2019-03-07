@@ -93,11 +93,14 @@ class SceneMain extends Phaser.Scene {
 
     game.carPoints = 0;
 
-    game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
+    game.currentPoints = this.add.text(60, 15, 0 +' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
+    game.currentPoints.setOrigin(0.5);
 
-    game.currentHealth = this.add.text(400, 5, this.car.getData('health') + ' HP', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
+    game.currentHealth = this.add.text(this.game.config.width - 35, 15, this.car.getData('health') + ' HP', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
+    game.currentHealth.setOrigin(0.5);
 
-    game.level = this.add.text(200, 5, 'Level ' + this.level, { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'center'});
+    game.level = this.add.text(this.game.config.width * 0.5, 15, 'Level ' + this.level, { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'center'});
+    game.level.setOrigin(0.5);
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
