@@ -103,16 +103,13 @@ document.addEventListener('submit', function(e){
   const carForm = document.querySelector('#car-form')
   if (e.target === userForm){
     e.preventDefault();
-    // getAllusers();
     if(searchExistingUser(userForm.username.value) == undefined) {
       addNewUser({username: userForm.username.value});
-      currentUser = searchExistingUser(userForm.username.value);
-      console.log(currentUser)
     } else {
       currentUser = searchExistingUser(userForm.username.value);
+      game.user = currentUser;
     }
     //current user is undefined here if they're a new user, unless you click the submit button (twice?)
-    game.user = currentUser;
   } else if (e.target === carForm) {
     e.preventDefault();
     if (e.target.car.value == "speedy") {
@@ -144,14 +141,9 @@ function getCars() {
 };
 
 function searchExistingUser(name){
-  getAllusers();
-
   return allUsers.find(u => {
-    // debugger
     return u.username == name;
   });
-  debugger
-  // console.log(foundUser)
 }
 
 function getAllusers(){
@@ -161,6 +153,7 @@ function getAllusers(){
     allUsers = [];
     users.forEach(user => {
       allUsers.push(user);
+      return allUsers;
     })
   })
 }
@@ -179,8 +172,7 @@ function addNewUser(user){
   }).then(myJson =>
     myJson.json())
   .then(
-    res=>{allUsers.push(res)
-    return res
+    res=>{allUsers.push(res);
+    game.user = res;
   })
-  .then(user => searchExistingUser(user))
 }
