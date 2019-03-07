@@ -3,12 +3,12 @@ class Car extends Entity{
     super(scene, x, y, key)
   }
 
-  addPoints(num) {
-    let carPoints = this.getData("points");
-    carPoints += num;
-    this.setData("points", carPoints);
-    game.currentPoints.setText( carPoints+' Points');
-  }
+  // addPoints(num) {
+  //   // let carPoints = this.getData("points");
+  //   game.carPoints += num;
+  //   // this.setData("points", carPoints);
+  //   game.currentPoints.setText(game.carPoints +' Points');
+  // }
 
   moveUp() {
     this.body.velocity.y = -this.getData("speed");
@@ -139,9 +139,9 @@ class Shooty extends Car {
     super(scene, x, y, "shooty");
 
     this.setData("isShooting", false);
-    this.setData("timerShootDelay", 5);//firerate
+    this.setData("timerShootDelay", 8);//firerate
     this.setData("timerShootTick", this.getData("timerShootDelay") - 1);
-    this.setData("speed", 200);
+    this.setData("speed", 300);
     this.setData("points", 0);
     this.setData('category','Speedy')
     this.setData('health', 100)

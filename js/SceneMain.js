@@ -91,6 +91,8 @@ class SceneMain extends Phaser.Scene {
         )
       }
 
+    game.carPoints = 0;
+
     game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
 
     game.currentHealth = this.add.text(400, 5, this.car.getData('health') + ' HP', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
@@ -111,15 +113,18 @@ class SceneMain extends Phaser.Scene {
     // recognize collision between game objects
     this.physics.add.collider(this.carLasers, this.enemies, function(carLaser, enemy) {
       // destroys cop
-      if (enemy) {
+      if (enemy && !enemy.getData('isDead')) {
         if (enemy.onDestroy !== undefined) {
             enemy.onDestroy();
         }
         // enemy.getData('isDead')
-      enemy.explode(true);
-      carLaser.destroy();
+        enemy.explode(true);
+        carLaser.destroy();
+        game.carPoints += 100;
+        game.currentPoints.setText(game.carPoints + ' Points');
     }
   });
+  
   // recognize collison between cop and car
     this.physics.add.overlap(this.car, this.enemies, function(car, enemy) {
       if (!car.getData("isDead") &&
@@ -168,7 +173,7 @@ class SceneMain extends Phaser.Scene {
   update() {
 
     if (!this.car.getData("isDead")) {
-      if (this.i !==0 && this.i % 777 == 0) {
+      if (this.i !==0 && this.i % 1000 == 0) {
         this.level++;
         game.level.setText('Level ' + this.level)
        let numCops = 0

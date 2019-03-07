@@ -64,7 +64,6 @@ class Cop extends Entity {
         this.shootTimer.remove(false);
       }
     }
-    this.scene.car.addPoints(100);
   }
 }//end of cop class
 
