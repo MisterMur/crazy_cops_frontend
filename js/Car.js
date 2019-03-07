@@ -3,13 +3,6 @@ class Car extends Entity{
     super(scene, x, y, key)
   }
 
-  // addPoints(num) {
-  //   // let carPoints = this.getData("points");
-  //   game.carPoints += num;
-  //   // this.setData("points", carPoints);
-  //   game.currentPoints.setText(game.carPoints +' Points');
-  // }
-
   moveUp() {
     this.body.velocity.y = -this.getData("speed");
   }
@@ -79,7 +72,7 @@ class Car extends Entity{
       body: JSON.stringify({
         user_id: game.user.id,
         car_id: game.car.id,
-        score: this.getData("points")
+        score: game.carPoints
       })
     })
     .then(response => response.json())

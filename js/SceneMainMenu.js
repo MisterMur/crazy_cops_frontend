@@ -53,7 +53,10 @@ class SceneMainMenu extends Phaser.Scene {
       this.btnPlay.on("pointerup", function() {
         this.btnPlay.setTexture("sprBtnPlay");
         if(game.user && game.car){
-          game.error.destroy()
+          if(game.error){
+
+            game.error.destroy()
+          }
         this.scene.start("SceneMain");
       }else{
         game.error = this.add.text( 115,200,'Please Select Car and User', { fill: '#ffffff', fontFamily: 'monospace',fontSize:16, align:'center' })

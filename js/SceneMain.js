@@ -124,7 +124,7 @@ class SceneMain extends Phaser.Scene {
         game.currentPoints.setText(game.carPoints + ' Points');
     }
   });
-  
+
   // recognize collison between cop and car
     this.physics.add.overlap(this.car, this.enemies, function(car, enemy) {
       if (!car.getData("isDead") &&
