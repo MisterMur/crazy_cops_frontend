@@ -30,6 +30,7 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndExplode1", "content/sndExplode1.wav");
     this.load.audio("sndLaser", "content/sndLaser.wav");
 
+    this.i = 0;
   };//end of preload
 
   create() {
@@ -145,37 +146,44 @@ class SceneMain extends Phaser.Scene {
         }
     });
 
+    this.time.addEvent({
+      delay: 1500,
+      callback: function() {
+      var enemy = new Cop(
+        this,
+        Phaser.Math.Between(0, this.game.config.width),
+        0
+      );
+      this.enemies.add(enemy);
+      },
+      callbackScope: this,
+      loop: true
+    });
+
+  };
+
+  update() {
+
     if (!this.car.getData("isDead")) {
-      for (let i = 10000; i > 250; i -= 1000) {
-        setInterval(()=>{
-          this.time.removeAllEvents()
-          this.time.addEvent({
-          delay: i,
-          callback: function() {
-          var enemy = new Cop(
-            this,
-            Phaser.Math.Between(0, this.game.config.width),
-            0
-          );
-          this.enemies.add(enemy);
-          },
-          callbackScope: this,
-          loop: true
-          });
-          console.log(this.time.now)
-        }, 2000)
-      }
-    }
-
-  }; // end of create
-  //  updateCounter() {
-  //     total++;
-  //     console.log(total)
-  // }
-
-  update(){
-    // this.time.now = 0
-
+      if (this.i !==0 && this.i % 777 == 0) {
+        console.log('another one')
+       let numCops = 0
+         this.time.addEvent({
+         delay: 5000,
+         callback: function() {
+         var enemy = new Cop(
+           this,
+           Phaser.Math.Between(0, this.game.config.width),
+           0
+         );
+         this.enemies.add(enemy);
+         },
+         callbackScope: this,
+         loop: true
+         });
+       }
+      this.i++;
+     }
 
     if (!this.car.getData("isDead")) {
       this.car.update();

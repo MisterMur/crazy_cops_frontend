@@ -57,7 +57,7 @@ class Cop extends Entity {
     this.setData("isDead", true);
     }
   }
-  
+
   onDestroy() {
     if (this.shootTimer !== undefined) {
       if (this.shootTimer) {
@@ -65,7 +65,6 @@ class Cop extends Entity {
       }
     }
     this.scene.car.addPoints(100);
-    console.log(this.scene.car.getData("points"));
   }
 }//end of cop class
 
