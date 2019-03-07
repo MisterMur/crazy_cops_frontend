@@ -49,10 +49,18 @@ class SceneMainMenu extends Phaser.Scene {
       this.btnPlay.setTexture("sprBtnPlayDown");
       this.sfx.btnDown.play();
     }, this);
-    this.btnPlay.on("pointerup", function() {
-      this.btnPlay.setTexture("sprBtnPlay");
-      this.scene.start("SceneMain");
-    }, this);
+
+      this.btnPlay.on("pointerup", function() {
+        this.btnPlay.setTexture("sprBtnPlay");
+        if(game.user && game.car){
+          game.error.destroy()
+        this.scene.start("SceneMain");
+      }else{
+        game.error = this.add.text( 115,200,'Please Select Car and User', { fill: '#ffffff', fontFamily: 'monospace',fontSize:16, align:'center' })
+
+      }
+      }, this);
+
   };//end of create
 
   loadSceneMain(){
@@ -66,23 +74,27 @@ class SceneMainMenu extends Phaser.Scene {
 function addMainMenuElements(){
   const userContainer=document.querySelector('#user-container')
   userContainer.innerHTML +=`
-  <form id="user-form" action="index.html" method="post">
-    <input type="text" label="Username" name="username" value="">
-    <input type="submit" value="Create User">
-  </form>
+  <div>
+    <form class="right" id="user-form" action="index.html" method="post">
+      <input type="text" label="Username" name="username" value="">
+      <input type="submit" value="Create User">
+    </form>
+  </div>
   `
 };//end of addMainMenuElements
 
 function addCarMenuElements(){
   const userContainer=document.querySelector('#user-container')
   userContainer.innerHTML +=`
-  <form id="car-form" action="index.html" method="post">
-    <select label="Choose a car" name="car">
-      <option value="speedy">Speedy</option>
-      <option value="shooty">Shooty</option>
-      <option value="tanky">Tanky</option>
-    <input type="submit" value="Select Car">
-  </form>
+  <div>
+    <form class="right" id="car-form" action="index.html" method="post">
+      <select label="Choose a car" name="car">
+        <option value="speedy">Speedy</option>
+        <option value="shooty">Shooty</option>
+        <option value="tanky">Tanky</option>
+      <input type="submit" value="Select Car">
+    </form>
+  </div>
   `
 };
 

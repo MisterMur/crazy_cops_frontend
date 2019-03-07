@@ -1,0 +1,11 @@
+.right {
+  float: right;
+  width: 200px;
+  padding: 10px;
+}
+.container {
+  float: right;
+  width: 220px;
+  border: 5px solid #000;
+
+}
