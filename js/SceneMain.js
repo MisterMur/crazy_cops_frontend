@@ -31,6 +31,7 @@ class SceneMain extends Phaser.Scene {
     this.load.audio("sndLaser", "content/sndLaser.wav");
 
     this.i = 0;
+    this.level = 1;
   };//end of preload
 
   create() {
@@ -91,8 +92,10 @@ class SceneMain extends Phaser.Scene {
       }
 
     game.currentPoints = this.add.text(5, 5, 0+' Points', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'left' });
-    // debugger
+
     game.currentHealth = this.add.text(400, 5, this.car.getData('health') + ' HP', { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'right'});
+
+    game.level = this.add.text(200, 5, 'Level ' + this.level, { fill: '#ffffff', fontFamily: 'monospace',fontSize:14, align:'center'});
     //assigns movement to keys
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -166,7 +169,8 @@ class SceneMain extends Phaser.Scene {
 
     if (!this.car.getData("isDead")) {
       if (this.i !==0 && this.i % 777 == 0) {
-        console.log('another one')
+        this.level++;
+        game.level.setText('Level ' + this.level)
        let numCops = 0
          this.time.addEvent({
          delay: 5000,
