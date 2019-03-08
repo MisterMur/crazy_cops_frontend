@@ -75,7 +75,10 @@ class Car extends Entity{
         score: game.carPoints
       })
     })
-    .then(response => response.json())
+    .then(response => {
+      game.finalScore = game.carPoints;
+      return response.json();
+    })
   };
 
   onDestroy() {

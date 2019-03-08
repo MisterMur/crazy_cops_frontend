@@ -29,7 +29,7 @@ class SceneGameOver extends Phaser.Scene {
       align: 'center'
     });
     this.title.setOrigin(0.5);
-    this.lastScore = this.add.text(this.game.config.width * 0.5, 65, game.carPoints, {
+    this.lastScore = this.add.text(this.game.config.width * 0.5, 65, game.finalScore, {
       fontFamily: 'monospace',
       fontSize: 30,
       fontStyle: 'bold',
@@ -110,7 +110,6 @@ function getAllScores(){
   .then(games => {
     for(let i = 0;i<10;i++){
       renderScoreToDom(games[i])
-
     }
   })
 }
@@ -119,7 +118,6 @@ function renderScoreToDom(g){
   scoreContainer.style.display = 'block';
   let splitDate = g.created_at.split('T')
   let formattedDate = splitDate[0] + ' at ' + splitDate[1].slice(0, 5)
-
 
   scoreContainer.innerHTML += `
   <div>
