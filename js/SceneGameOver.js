@@ -1,4 +1,6 @@
 var allGames = []
+const scoreContainer = document.querySelector('#score-container')
+
 
 class SceneGameOver extends Phaser.Scene {
   constructor() {
@@ -35,6 +37,7 @@ class SceneGameOver extends Phaser.Scene {
       align: 'center'});
     this.lastScore.setOrigin(0.5);
     this.getHighScores()
+    getAllScores()
 
     this.btnPlay = this.add.sprite(
       this.game.config.width * 0.5,
@@ -67,6 +70,7 @@ class SceneGameOver extends Phaser.Scene {
     }, this);
 
   }
+
   displayHighScores(games){
     var topScores = games.slice(0,10)
 
@@ -89,4 +93,38 @@ class SceneGameOver extends Phaser.Scene {
     })
     .then(games=>this.displayHighScores(games))
   }
+
 } // end of SceneGameOver class
+
+function getAllScores(){
+  scoreContainer.innerHTML=''
+  fetch(url+`users/${game.user.id}`)
+  .then(res=>res.json())
+  .then(user => {
+    //
+
+    return user.games.sort((a, b) => {
+      return b.score - a.score;
+    })
+  })
+  .then(games => {
+    for(let i = 0;i<10;i++){
+      renderScoreToDom(games[i])
+
+    }
+  })
+}
+
+function renderScoreToDom(g){
+  scoreContainer.style.display = 'block';
+  let splitDate = g.created_at.split('T')
+  let formattedDate = splitDate[0] + ' at ' + splitDate[1].slice(0, 5)
+
+
+  scoreContainer.innerHTML += `
+  <div>
+
+    <p>${g.score} Points --> ${formattedDate}</p>
+  </div>
+  `
+}

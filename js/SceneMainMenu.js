@@ -1,6 +1,7 @@
 const url = 'http://localhost:3000/api/v1/'
 var allCars = [];
 var allUsers = [];
+var allUserGames =[]
 var currentUser;
 
 class SceneMainMenu extends Phaser.Scene {
@@ -108,7 +109,9 @@ document.addEventListener('submit', function(e){
     } else {
       currentUser = searchExistingUser(userForm.username.value);
       game.user = currentUser;
+      getAllScores()
     }
+
     //current user is undefined here if they're a new user, unless you click the submit button (twice?)
   } else if (e.target === carForm) {
     e.preventDefault();
@@ -144,6 +147,34 @@ function searchExistingUser(name){
   return allUsers.find(u => {
     return u.username == name;
   });
+}
+function getAllScores(){
+  fetch(url+`users/${game.user.id}`)
+  .then(res=>res.json())
+  .then(user => {
+    return user.games.sort((a, b) => {
+      return b.score - a.score;
+    })
+  })
+  .then(games => {
+    for(let i = 0;i<10;i++){
+      renderScoreToDom(games[i])
+    }
+  })
+}
+
+function renderScoreToDom(g){
+  const scoreContainer = document.querySelector('#score-container')
+  scoreContainer.style.display = 'block';
+  let splitDate = g.created_at.split('T')
+  let formattedDate = splitDate[0] + ' at ' + splitDate[1].slice(0, 5)
+
+  scoreContainer.innerHTML += `
+  <div>
+
+    <p>${g.score} Points --> ${formattedDate}</p>
+  </div>
+  `
 }
 
 function getAllusers(){
