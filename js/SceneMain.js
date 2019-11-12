@@ -4,31 +4,31 @@ class SceneMain extends Phaser.Scene {
   }// end of constructor
 
   preload() {
-    this.load.image("sprBg0", "content/sprBg0.png");
-    this.load.image("sprBg1", "content/sprBg1.png");
-    this.load.spritesheet("sprExplosion", "content/sprExplosion.png", {
+    this.load.image("sprBg0", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBg0.png");
+    this.load.image("sprBg1", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBg1.png");
+    this.load.spritesheet("sprExplosion", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprExplosion.png", {
       frameWidth: 32,
       frameHeight: 32
     });
-    this.load.spritesheet("sprEnemy0", "content/sprEnemy0.png", {
+    this.load.spritesheet("sprEnemy0", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprEnemy0.png", {
       frameWidth: 16,
       frameHeight: 16
     });
-    this.load.image("sprEnemy1", "content/sprEnemy1.png");
-    this.load.spritesheet("sprEnemy2", "content/cop.png", {
+    this.load.image("sprEnemy1", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprEnemy1.png");
+    this.load.spritesheet("sprEnemy2", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/cop.png", {
       frameWidth: 30,
       frameHeight: 45
     });
-    this.load.image("sprLaserEnemy0", "content/sprLaserEnemy0.png");
-    this.load.image("sprLaserPlayer", "content/sprLaserPlayer.png");
-    this.load.spritesheet("sprPlayer", "content/sprPlayer.png", {
+    this.load.image("sprLaserEnemy0", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprLaserEnemy0.png");
+    this.load.image("sprLaserPlayer", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprLaserPlayer.png");
+    this.load.spritesheet("sprPlayer", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprPlayer.png", {
       frameWidth: 16,
       frameHeight: 16
     });
 
-    this.load.audio("sndExplode0", "content/sndExplode0.wav");
-    this.load.audio("sndExplode1", "content/sndExplode1.wav");
-    this.load.audio("sndLaser", "content/sndLaser.wav");
+    this.load.audio("sndExplode0", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndExplode0.wav");
+    this.load.audio("sndExplode1", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndExplode1.wav");
+    this.load.audio("sndLaser", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndLaser.wav");
 
     this.i = 0;
     this.level = 1;

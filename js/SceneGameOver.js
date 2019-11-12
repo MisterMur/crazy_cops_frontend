@@ -7,18 +7,18 @@ class SceneGameOver extends Phaser.Scene {
     super({ key: "SceneGameOver" });
   }
   preload() {
-    this.load.image("sprBtnPlay", "content/sprBtnPlay.png");
-    this.load.image("cop", "content/cop.png");
-    this.load.image("shooty", "content/shooty.png");
-    this.load.image("porsche", "content/porsche.png");
-    this.load.image("donut", "content/donut.png");
-    this.load.image("sprBtnPlayHover", "content/sprBtnPlayHover.png");
-    this.load.image("sprBtnPlayDown", "content/sprBtnPlayDown.png");
-    this.load.image("sprBtnRestart", "content/sprBtnRestart.png");
-    this.load.image("sprBtnRestartHover", "content/sprBtnRestartHover.png");
-    this.load.image("sprBtnRestartDown", "content/sprBtnRestartDown.png");
-    this.load.audio("sndBtnOver", "content/sndBtnOver.wav");
-    this.load.audio("sndBtnDown", "content/sndBtnDown.wav");
+    this.load.image("sprBtnPlay", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnPlay.png");
+    this.load.image("cop", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/cop.png");
+    this.load.image("shooty", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/shooty.png");
+    this.load.image("porsche", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/porsche.png");
+    this.load.image("donut", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/donut.png");
+    this.load.image("sprBtnPlayHover", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnPlayHover.png");
+    this.load.image("sprBtnPlayDown", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnPlayDown.png");
+    this.load.image("sprBtnRestart", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnRestart.png");
+    this.load.image("sprBtnRestartHover", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnRestartHover.png");
+    this.load.image("sprBtnRestartDown", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnRestartDown.png");
+    this.load.audio("sndBtnOver", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndBtnOver.wav");
+    this.load.audio("sndBtnDown", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndBtnDown.wav");
   };
   create() {
     this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
