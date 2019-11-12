@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const usersEndPoint = 'http://localhost:3000/api/v1/users';
+  const usersEndPoint = 'https://pure-brushlands-11828.herokuapp.com/api/v1/users';
 
   function getUsers() {
     fetch(usersEndPoint)

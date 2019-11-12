@@ -101,11 +101,14 @@ function getAllScores(){
   fetch(url+`users/${game.user.id}`)
   .then(res=>res.json())
   .then(user => {
-    //
 
-    return user.games.sort((a, b) => {
-      return b.score - a.score;
-    })
+    //
+    if( user.games){
+      return user.games.sort((a, b) => {
+        return b.score - a.score;
+      })
+
+    }
   })
   .then(games => {
     for(let i = 0;i<10;i++){

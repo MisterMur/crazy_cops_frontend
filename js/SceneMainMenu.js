@@ -1,4 +1,4 @@
-const url = 'http://localhost:3000/api/v1/'
+const url = 'https://pure-brushlands-11828.herokuapp.com/api/v1/'
 var allCars = [];
 var allUsers = [];
 var allUserGames =[]
