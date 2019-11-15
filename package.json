@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "fetch-jsonp": "^1.1.3",
+    "lite-server": "^2.5.4",
     "node-static": "^0.7.11",
     "phaser": "^3.16.2"
   },
@@ -12,6 +13,7 @@
     "@orange-games/phaser-input": "^2.0.5"
   },
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

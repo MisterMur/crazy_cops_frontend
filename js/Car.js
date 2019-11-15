@@ -62,7 +62,7 @@ class Car extends Entity{
   }
 
   postGame() {
-    fetch('http://localhost:3000/api/v1/games', {
+    fetch('https://pure-brushlands-11828.herokuapp.com/api/v1/games', {
       method: 'POST',
       mode: 'cors',
       headers: {
