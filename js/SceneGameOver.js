@@ -7,18 +7,18 @@ class SceneGameOver extends Phaser.Scene {
     super({ key: "SceneGameOver" });
   }
   preload() {
-    this.load.image("sprBtnPlay", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnPlay.png");
-    this.load.image("cop", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/cop.png");
-    this.load.image("shooty", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/shooty.png");
-    this.load.image("porsche", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/porsche.png");
-    this.load.image("donut", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/donut.png");
-    this.load.image("sprBtnPlayHover", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnPlayHover.png");
-    this.load.image("sprBtnPlayDown", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnPlayDown.png");
-    this.load.image("sprBtnRestart", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnRestart.png");
-    this.load.image("sprBtnRestartHover", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnRestartHover.png");
-    this.load.image("sprBtnRestartDown", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sprBtnRestartDown.png");
-    this.load.audio("sndBtnOver", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndBtnOver.wav");
-    this.load.audio("sndBtnDown", "https://s3.us-east-2.amazonaws.com/brianjmurillo.com/Content/sndBtnDown.wav");
+    this.load.image("sprBtnPlay", contentUrl+"sprBtnPlay.png");
+    this.load.image("cop", contentUrl+"cop.png");
+    this.load.image("shooty", contentUrl+"shooty.png");
+    this.load.image("porsche", contentUrl+"porsche.png");
+    this.load.image("donut", contentUrl+"donut.png");
+    this.load.image("sprBtnPlayHover", contentUrl+"sprBtnPlayHover.png");
+    this.load.image("sprBtnPlayDown", contentUrl+"sprBtnPlayDown.png");
+    this.load.image("sprBtnRestart", contentUrl+"sprBtnRestart.png");
+    this.load.image("sprBtnRestartHover", contentUrl+"sprBtnRestartHover.png");
+    this.load.image("sprBtnRestartDown", contentUrl+"sprBtnRestartDown.png");
+    this.load.audio("sndBtnOver", contentUrl+"sndBtnOver.wav");
+    this.load.audio("sndBtnDown", contentUrl+"sndBtnDown.wav");
   };
   create() {
     this.title = this.add.text(this.game.config.width * 0.5, 128, "GAME OVER", {
